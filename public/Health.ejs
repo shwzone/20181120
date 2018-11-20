@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<!-- Stylesheets
+	============================================= -->
+	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic"
+	 rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="/style.css" type="text/css" />
+	<link rel="stylesheet" href="/css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="/css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
+
+	<link rel="stylesheet" href="/css/responsive.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Document Title
+	============================================= -->
+	<title>Blog - Timeline Right Sidebar | MIRO</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	 crossorigin="anonymous">
+
+	<link rel="stylesheet" href="/css/components/bs-filestyle.css" type="text/css" />
+
+	<link rel="stylesheet" href="/css/responsive.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header
+		============================================= -->
+		<header id="header" class="full-header">
+
+			<div id="header-wrap">
+
+				<div class="container clearfix">
+
+					<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+					<!-- Logo
+					============================================= -->
+					<div id="logo">
+						<a href="/" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="images/miro.png" alt="Canvas Logo"></a>
+						<a href="/" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img src="images/miro.png" alt="Canvas Logo"></a>
+					</div><!-- #logo end -->
+
+					<!-- Primary Navigation
+					============================================= -->
+					<nav id="primary-menu">
+
+						<ul>
+							<li><a href="/"><div>MIRO</div></a></li>
+	   
+							<li class="mega-menu"><a href="/announce"><div>Notification</div></a></li>
+	   
+							<li class="mega-menu"><a href="/schedule"><div>Schedule</div></a></li>
+	   
+							<li class="mega-menu"><a href="/gallery"><div>Gallery</div></a></li>
+	   
+							<li class="mega-menu"><a href="/notice"><div>Codes</div></a></li>
+	   
+							<li class="mega-menu"><a href="/health"><div>Health</div></a></li>
+	   
+							<li class="mega-menu"><a href="/faqs"><div>Posts</div></a></li>
+							
+						 </ul>
+
+
+
+
+					</nav><!-- #primary-menu end -->
+
+				</div>
+
+			</div>
+
+		</header><!-- #header end -->
+
+		<!-- Page Title
+		============================================= -->
+		<section id="page-title">
+
+			<div class="container clearfix">
+				<h1>Health</h1>
+				<span></span>
+				<ol class="breadcrumb">
+					<li><a href="/health-writing">글 작성</a></li>
+
+				</ol>
+			</div>
+
+		</section><!-- #page-title end -->
+
+		<!-- Content
+		============================================= -->
+		<section id="content">
+
+			<div class="content-wrap">
+
+				<div class="container clearfix">
+
+					<!-- Post Content
+					============================================= -->
+					<div class="postcontent nobottommargin clearfix">
+						<% if(boards1 !== undefined) { %>
+						<% for(var i=boards1.length-1; i >= 0; i--){ %>
+
+						<!-- Posts
+						============================================= -->
+						<div id="posts" class="post-timeline clearfix">
+
+							<div class="timeline-border"></div>
+
+							<div class="entry clearfix">
+								<div class="entry-timeline">
+									<span id=aaa>
+										<h2>
+											<%= boards1[i].created_at %>
+										</h2>
+									</span>
+
+									<div class="timeline-divider"></div>
+								</div>
+								<div class="entry-title">
+									<h2>
+										<%= boards1[i].title%>
+									</h2>
+								</div>
+								<br>
+
+								<div id = "FN" style = "display:none" value="<%=boards1[i].userfile%>">
+										<%=boards1[i].userfile%>
+								</div>
+
+								<div id="myList">
+
+								</div>
+			
+
+								<% if(boards1[i].userfile!=null){%>
+									<div class="entry-video">
+										<video src="<%=boards1[i].userfile%>" controls>
+	
+	
+									</div>
+									<div class="entry-content">
+										<p>
+											<%= boards1[i].content%>
+										</p>
+										<div style="text-align : right">
+											<p>
+												<form method="post" action="/destroy/<%=boards1[i]._id%>" id="delete"></form>
+												<a href="/health-rewrite/<%=boards1[i]._id%>"><span>수정</span></a>
+	
+												<a href="#" onClick="document.getElementById('delete').submit();"><span>삭제</span></a>
+											</p>
+										</div>
+	
+									</div>
+								<%}else{%>
+								<div class="entry-content">
+									<p>
+										<%= boards1[i].content%>
+									</p>
+									<div style="text-align : right">
+										<p>
+											<form method="post" action="/destroyb/<%=boards1[i]._id%>" id="delete"></form>
+											<a href="/health-rewrite/<%=boards1[i]._id%>"><span>수정</span></a>
+
+											<a href="#" onClick="document.getElementById('delete').submit();"><span>삭제</span></a>
+										</p>
+									</div>
+
+								</div>
+								<%}%>
+								
+
+								
+							
+							</div>
+
+
+
+
+
+
+
+
+
+
+
+						</div><!-- #posts end -->
+						<%}}%>
+					</div><!-- .postcontent end -->
+
+					<!-- Sidebar
+					============================================= -->
+
+
+				</div>
+
+			</div>
+
+		</section><!-- #content end -->
+
+		<!-- Footer
+		============================================= -->
+
+
+	</div>
+
+	<!-- Copyrights
+			============================================= -->
+
+
+	</footer><!-- #footer end -->
+
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+	<!-- <script>
+
+
+		var month = document.getElementById('getMonth' + j).innerHTML
+		alert(month)
+		document.getElementById('getMonth').innerHTML = month.substring(4, 7)
+
+		var day = document.getElementById('getDay' + j).innerHTML
+
+		document.getElementById('getDay').innerHTML = day.substring(8, 10);
+
+
+	</script> -->
+	<!-- External JavaScripts
+	============================================= -->
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/plugins.js"></script>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script type="text/javascript" src="/js/functions.js"></script>
+	
+		
+
+		
+		
+	
+</body>
+
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<!-- Stylesheets
+	============================================= -->
+	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<link rel="stylesheet" href="css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+
+	<link rel="stylesheet" href="css/responsive.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Document Title
+	============================================= -->
+	<title>Posts | MIRO</title>
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header
+		============================================= -->
+		<header id="header" class="full-header">
+
+			<div id="header-wrap">
+
+				<div class="container clearfix">
+
+					<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+					<!-- Logo
+					============================================= -->
+					<div id="logo">
+						<a href="/" class="standard-logo" data-dark-logo="images/miro.png"><img src="images/miro.png" alt="Canvas Logo"></a>
+						<a href="/" class="retina-logo" data-dark-logo="images/miro.png"><img src="images/miro.png" alt="Canvas Logo"></a>
+					</div><!-- #logo end -->
+
+					<!-- Primary Navigation
+					============================================= -->
+					<nav id="primary-menu">
+
+							<ul>
+									<li><a href="/"><div>MIRO</div></a></li>
+					 
+									<li class="mega-menu"><a href="/announce"><div>Notification</div></a></li>
+					 
+									<li class="mega-menu"><a href="/schedule"><div>Schedule</div></a></li>
+					 
+									<li class="mega-menu"><a href="/gallery"><div>Gallery</div></a></li>
+					 
+									<li class="mega-menu"><a href="/notice"><div>Codes</div></a></li>
+					 
+									<li class="mega-menu"><a href="/health"><div>Health</div></a></li>
+					 
+									<li class="mega-menu"><a href="/faqs"><div>Posts</div></a></li>
+									
+								  </ul>
+
+					</nav><!-- #primary-menu end -->
+
+				</div>
+
+			</div>
+
+		</header><!-- #header end -->
+
+		<!-- Page Title
+		============================================= -->
+		<section id="page-title">
+
+			<div class="container clearfix">
+				<h1>Posts</h1>
+				<ol class="breadcrumb">
+					<li><a href="/">Home</a></li>
+					
+					<li class="active"><a href="/faqs">Posts</li>
+				</ol>
+			</div>
+
+		</section><!-- #page-title end -->
+
+		<!-- Content
+		============================================= -->
+		<section id="content">
+
+			<div class="content-wrap">
+
+				<div class="container clearfix">
+
+					<!-- Post Content
+					============================================= -->
+					<div class="postcontent nobottommargin clearfix">
+
+						<div class="clear"></div>
+
+						<div id="faqs" class="faqs" style="font-size:16px">
+
+							<table class="table">
+								<thead>
+								  <tr>
+									<th scope="col">번호</th>
+									<th scope="col">제목</th>
+									<th scope="col">작성자</th>
+									<th scope="col">작성시간</th>
+									<th scope="col">조회수</th>
+								  </tr>
+								</thead>
+								<tbody>
+								  <% if(boards !== undefined) { %>
+								  <% for(var i=boards.length-1; i >= 0; i--){ %>
+								  <tr>
+									<th scope="row">
+									  <%= i+1 %>
+									</th>
+									<td><a href="/canvas-show/<%= boards[i]._id%>">
+										<%= boards[i].title %></a>
+									</td>
+									<td>unknown</td>
+									<td>
+									  <%= boards[i].created_at %>
+									</td>
+									<td>
+									  <%= boards[i].hits %>
+									</td>
+								  </tr>
+								  <%}}%>
+								</tbody>
+							  </table>
+						  
+							  <a href="/canvas-writing" style="float:right; font-size:16px; border:1px solid" class="button button-circle">나도 글쓰기</a>
+
+						</div>
+
+					</div><!-- .postcontent end -->
+
+				</div>
+
+			</div>
+
+		</section><!-- #content end -->
+
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+	<!-- External JavaScripts
+	============================================= -->
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/plugins.js"></script>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script type="text/javascript" src="js/functions.js"></script>
+
+	<script type="text/javascript">
+		jQuery(document).ready(function($){
+			var $faqItems = $('#faqs .faq');
+			if( window.location.hash != '' ) {
+				var getFaqFilterHash = window.location.hash;
+				var hashFaqFilter = getFaqFilterHash.split('#');
+				if( $faqItems.hasClass( hashFaqFilter[1] ) ) {
+					$('#portfolio-filter li').removeClass('activeFilter');
+					$( '[data-filter=".'+ hashFaqFilter[1] +'"]' ).parent('li').addClass('activeFilter');
+					var hashFaqSelector = '.' + hashFaqFilter[1];
+					$faqItems.css('display', 'none');
+					if( hashFaqSelector != 'all' ) {
+						$( hashFaqSelector ).fadeIn(500);
+					} else {
+						$faqItems.fadeIn(500);
+					}
+				}
+			}
+
+			$('#portfolio-filter a').click(function(){
+				$('#portfolio-filter li').removeClass('activeFilter');
+				$(this).parent('li').addClass('activeFilter');
+				var faqSelector = $(this).attr('data-filter');
+				$faqItems.css('display', 'none');
+				if( faqSelector != 'all' ) {
+					$( faqSelector ).fadeIn(500);
+				} else {
+					$faqItems.fadeIn(500);
+				}
+				return false;
+		   });
+		});
+	</script>
+
+</body>
+</html>
